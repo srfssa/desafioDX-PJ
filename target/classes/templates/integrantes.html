@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Integrantes</title>
+</head>
+<body>
+<li><a th:href="@{/web}"><<< Voltar</a></li><br>
+
+<h2>Cadastrar Integrante</h2>
+
+<form th:action="@{/web/integrante/cadastrar}" method="post">
+
+    Nome:
+    <input type="text" name="nome" required/><br><br>
+
+    Função:
+    <input type="text" name="funcao" required/><br><br>
+
+    Franquia:
+    <input type="text" name="franquia" required/><br><br>
+
+    <button type="submit">Salvar</button>
+
+</form>
+
+<hr>
+
+<h2>Lista de Integrantes</h2>
+
+<table border="1">
+
+    <tr>
+        <th>Nome</th>
+        <th>Função</th>
+        <th>Franquia</th>
+    </tr>
+
+    <tr th:each="i : ${integrantes}">
+        <td th:text="${i.nome}"></td>
+        <td th:text="${i.funcao}"></td>
+        <td th:text="${i.franquia}"></td>
+    </tr>
+
+</table>
+
+</body>
+</html>

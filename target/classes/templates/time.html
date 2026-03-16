@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Montagem de Time</title>
+</head>
+
+<body>
+<li><a th:href="@{/web}"><<< Voltar</a></li><br>
+
+<h2>Criar Time</h2>
+
+<form th:action="@{/web/time/cadastrar}" method="post">
+
+    Data do time:
+    <input type="date" name="data" required/>
+
+    <h3>Escolha os integrantes</h3>
+
+    <div th:each="i : ${integrantes}">
+
+        <input type="checkbox"
+               name="integrantes"
+               th:value="${i.id}"/>
+
+        <span th:text="${i.nome}"></span>
+
+    </div>
+
+    <br>
+
+    <button type="submit">Criar Time</button>
+    <p style="color:red" th:if="${msgTime}" th:text="${msgTime}"></p>
+
+</form>
+
+</body>
+</html>

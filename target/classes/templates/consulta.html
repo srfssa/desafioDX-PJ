@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Consultas</title>
+</head>
+
+<body>
+<li><a th:href="@{/web}"><<< Voltar</a></li><br>
+
+<h2>Consultar Time por Data</h2>
+
+<form action="/web/consulta/time/data" method="post">
+
+    Data:
+    <input type="date" name="data" th:value="${data}"/>
+
+    <button type="submit" id="timeData">Buscar</button>
+
+    <p style="color:red" th:if="${msgTimeData}" th:text="${msgTimeData}"></p>
+
+    <div th:if="${time != null && time.id != null}">
+        <h3>Resultado</h3>
+        <p><b>ID:</b> <span th:text="${time.id}"></span></p>
+        <p><b>Data:</b> <span th:text="${time.data}"></span></p>
+        <table border="1">
+            <tr>
+                <th>Nome</th>
+                <th>Função</th>
+                <th>Franquia</th>
+            </tr>
+
+            <tr th:each="i : ${time.integrantes}">
+                <td th:text="${i.nome}"></td>
+                <td th:text="${i.funcao}"></td>
+                <td th:text="${i.franquia}"></td>
+            </tr>
+        </table>
+    </div>
+
+</form>
+
+<hr>
+
+<h2>Consultar Integrante Mais Usado</h2>
+
+<form action="/web/consulta/integrante/mais-usado" method="post">
+
+    Data inicial:
+    <input type="date" name="dataInicial" th:value="${dataInicial}"/>
+
+    Data final:
+    <input type="date" name="dataFinal" th:value="${dataFinal}"/>
+
+    <button type="submit" id="integranteMax">Buscar</button>
+
+    <p style="color:red" th:if="${msgIntegranteComum}" th:text="${msgIntegranteComum}"></p>
+
+    <div th:if="${integrante != null && integrante.id != null}">
+        <h3>Resultado</h3>
+        <p><b>ID:</b> <span th:text="${integrante.id}">Teste</span></p>
+        <p><b>Nome:</b> <span th:text="${integrante.nome}"></span></p>
+        <p><b>Função:</b> <span th:text="${integrante.funcao}"></span></p>
+        <p><b>Franquia:</b> <span th:text="${integrante.franquia}"></span></p>
+    </div>
+
+</form>
+
+<hr>
+
+<h2>Consultar Time Mais Comum</h2>
+
+<form action="/web/consulta/time/mais-comum" method="post">
+
+    Data inicial:
+    <input type="date" name="dataInicial" th:value="${dataInicial}"/>
+
+    Data final:
+    <input type="date" name="dataFinal" th:value="${dataFinal}"/>
+
+    <button type="submit" id="timeComum">Buscar</button>
+
+    <p style="color:red" th:if="${msgTimeComum}" th:text="${msgTimeComum}"></p>
+
+    <div th:if="${timeComum != null && timeComum.id != null}">
+        <h3>Resultado</h3>
+        <p><b>ID:</b> <span th:text="${timeComum.id}"></span></p>
+        <p><b>Data:</b> <span th:text="${timeComum.data}"></span></p>
+    </div>
+
+</form>
+
+<hr>
+
+<h2>Consultar Função Mais Comum</h2>
+
+<form action="/web/consulta/funcao/mais-comum" method="post">
+
+    Data inicial:
+    <input type="date" name="dataInicial" th:value="${dataInicial}"/>
+
+    Data final:
+    <input type="date" name="dataFinal" th:value="${dataFinal}"/>
+
+    <button type="submit" id="funcaoComum">Buscar</button>
+
+    <p style="color:red" th:if="${msgFuncaoComum}" th:text="${msgFuncaoComum}"></p>
+    <div th:if="${funcaoComum != null}">
+        <h3>Resultado</h3>
+        <p><b>Função:</b> <span th:text="${funcaoComum}"></span></p>
+    </div>
+
+</form>
+
+<hr>
+
+<h2>Consultar Franquia Mais Famosa</h2>
+
+<form action="/web/consulta/franquia/mais-famosa" method="post">
+
+    Data inicial:
+    <input type="date" name="dataInicial" th:value="${dataInicial}"/>
+
+    Data final:
+    <input type="date" name="dataFinal" th:value="${dataFinal}"/>
+
+    <button type="submit" id="franquiaComum">Buscar</button>
+
+    <p style="color:red" th:if="${msgFranquiaComum}" th:text="${msgFranquiaComum}"></p>
+    <div th:if="${franquiaComum != null}">
+        <h3>Resultado</h3>
+        <p><b>Função:</b> <span th:text="${franquiaComum}"></span></p>
+    </div>
+
+</form>
+
+<hr>
+
+<h2>Consultar Contagem Por Franquia</h2>
+
+<form action="/web/consulta/franquia/contagem" method="post">
+
+    Data inicial:
+    <input type="date" name="dataInicial" th:value="${dataInicial}"/>
+
+    Data final:
+    <input type="date" name="dataFinal" th:value="${dataFinal}"/>
+
+    <button type="submit" id="btnContagemFranquia">Buscar</button>
+
+    <p style="color:red" th:if="${msgContagemFranquia}" th:text="${msgContagemFranquia}"></p>
+
+    <div th:if="${contagemFranquia != null && contagemFranquia.size() > 0}">
+        <h3>Resultado</h3>
+        <table>
+            <tr>
+                <th>Franquia</th>
+                <th>Quantidade</th>
+            </tr>
+
+            <tr th:each="entry : ${contagemFranquia}">
+                <td th:text="${entry.key}"></td>
+                <td th:text="${entry.value}"></td>
+            </tr>
+        </table>
+    </div>
+
+</form>
+
+<hr>
+
+<h2>Consultar Contagem Por Função</h2>
+
+<form action="/web/consulta/funcao/contagem" method="post">
+
+    Data inicial:
+    <input type="date" name="dataInicial" th:value="${dataInicial}"/>
+
+    Data final:
+    <input type="date" name="dataFinal" th:value="${dataFinal}"/>
+
+    <button type="submit" id="btnContagemFuncao">Buscar</button>
+
+    <p style="color:red" th:if="${msgContagemFuncao}" th:text="${msgContagemFuncao}"></p>
+
+    <div th:if="${contagemFuncao != null && contagemFuncao.size() > 0}">
+        <h3>Resultado</h3>
+        <table>
+            <tr>
+                <th>Franquia</th>
+                <th>Quantidade</th>
+            </tr>
+
+            <tr th:each="entry : ${contagemFuncao}">
+                <td th:text="${entry.key}"></td>
+                <td th:text="${entry.value}"></td>
+            </tr>
+        </table>
+    </div>
+
+</form>
+
+</body>
+</html>
