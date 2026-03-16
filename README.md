@@ -44,7 +44,7 @@ Antes de executar o projeto, instale:
 Abra o terminal e execute:
 
 ```
-git clone https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git
+git clone https://github.com/srfssa/desafioDX-PJ.git
 ```
 
 Acesse a pasta do projeto:
